@@ -1,3 +1,36 @@
+/* ---- Dark-mode overrides ---- */
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+body.dark header {
+  background: #000;
+}
+body.dark .product,
+body.dark #cart,
+body.dark #contact {
+  background: #1e1e1e;
+  box-shadow: 0 4px 18px rgba(0,0,0,.4);
+}
+body.dark #cart-items li {
+  border-color: #333;
+}
+body.dark input,
+body.dark textarea {
+  background: #222;
+  border-color: #444;
+  color: #eee;
+}
+
+/* Toggle button */
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-right: .8rem;
+  line-height: 1;
+}
 /* Reset & base */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
