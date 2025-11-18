@@ -34,3 +34,15 @@ function handleContact(event) {
   document.getElementById('contact-msg').textContent = 'Thanks! We’ll get back to you soon.';
   event.target.reset();
 }
+/* Dark-mode toggle */
+const toggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load saved theme
+if (localStorage.theme === 'dark') body.classList.add('dark');
+
+toggle.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  localStorage.theme = body.classList.contains('dark') ? 'dark' : 'light';
+  toggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+});
