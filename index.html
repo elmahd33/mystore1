@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>My Store</h1>
+    <div id="cart-icon">🛒 <span id="cart-count">0</span></div>
+  </header>
+
+  <main>
+    <section id="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/200x200?text=T-Shirt" />
+        <h3>Cool T-Shirt</h3>
+        <p>$19.99</p>
+        <button onclick="addToCart('T-Shirt', 19.99)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x200?text=Stickers" />
+        <h3>Sticker Pack</h3>
+        <p>$5.99</p>
+        <button onclick="addToCart('Stickers', 5.99)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x200?text=Mug" />
+        <h3>Mug</h3>
+        <p>$9.99</p>
+        <button onclick="addToCart('Mug', 9.99)">Add to Cart</button>
+      </div>
+    </section>
+
+    <section id="cart">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p><strong>Total: $<span id="cart-total">0.00</span></strong></p>
+      <button onclick="clearCart()">Clear Cart</button>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form onsubmit="handleContact(event)">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="contact-msg"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
