@@ -264,3 +264,86 @@ header {
   font-size: .8rem;
   cursor: pointer;
 }
+/* ---------- StockX Product Cards ---------- */
+#products {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.product-card {
+  display: flex;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 0;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.product-card:hover { border-color: #000; }
+.product-card img {
+  width: 220px;
+  height: 180px;
+  object-fit: cover;
+  border-right: 1px solid #e5e5e5;
+}
+.info {
+  flex: 1;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.style-code {
+  font-size: .8rem;
+  color: #666;
+  margin-bottom: .8rem;
+}
+.market {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+.market .label {
+  font-size: .75rem;
+  color: #666;
+  text-transform: uppercase;
+}
+.market .price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #34c759;   /* StockX green */
+}
+.buttons {
+  display: flex;
+  gap: .75rem;
+}
+.buttons button {
+  flex: 1;
+  padding: .6rem 1rem;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.buttons button:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Dark mode card */
+body.dark .product-card { background: #1a1a1a; border-color: #333; }
+body.dark .product-card img { border-color: #333; }
+body.dark .info h3 { color: #fff; }
+body.dark .style-code,
+body.dark .market .label { color: #bbb; }
