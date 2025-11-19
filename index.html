@@ -2,161 +2,262 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Spadre</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPADRE – Live Market</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Base ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:#fff;color:#111;line-height:1.4}
+    img{max-width:100%;display:block}
+
+    /* ---------- Header ---------- */
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      background:#000;color:#fff;padding:.75rem 1.5rem;border-bottom:1px solid #333;
+      font-size:.9rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;
+      position:sticky;top:0;z-index:1000
+    }
+    .header-left,.header-right{display:flex;align-items:center;gap:1.5rem}
+    .logo{color:#fff;text-decoration:none;font-size:1.3rem;font-weight:700}
+    .main-nav{display:flex;gap:1.2rem}
+    .main-nav a{color:#bbb;text-decoration:none;transition:color .2s}
+    .main-nav a:hover{color:#fff}
+    .search-box{width:320px;padding:.5rem .75rem;border:1px solid #444;background:#111;color:#fff;border-radius:4px;font-size:.9rem}
+    #theme-toggle{background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;margin-right:.8rem}
+    .bag{position:relative}#cart-count{position:absolute;top:-6px;right:-8px;background:#34c759;color:#000;border-radius:50%;padding:2px 6px;font-size:.65rem;font-weight:700}
+
+    /* ---------- Filter Bar ---------- */
+    .filter-bar{display:flex;gap:1.5rem;align-items:center;background:#000;padding:.75rem 1.5rem;border-bottom:1px solid #333;font-size:.85rem;text-transform:uppercase;font-weight:600}
+    .filter-group{display:flex;flex-direction:column;gap:.25rem}
+    .filter-group label{color:#bbb;font-size:.7rem}
+    .filter-group select{padding:.4rem .6rem;border:1px solid #444;background:#111;color:#fff;border-radius:4px;cursor:pointer}
+
+    /* ---------- Hero Strip ---------- */
+    .hero-strip{display:flex;justify-content:space-around;align-items:center;background:#000;color:#fff;padding:1.5rem 1rem;border-bottom:1px solid #333;text-align:center}
+    .hero-item .label{font-size:.7rem;color:#bbb;text-transform:uppercase;letter-spacing:.5px}
+    .hero-item .value{font-size:1.4rem;font-weight:700;margin-top:.25rem}
+
+    /* ---------- Product Grid ---------- */
+    #products{max-width:1200px;margin:2rem auto;padding:0 1.5rem;display:flex;flex-direction:column;gap:1.5rem}
+    .product-card{display:flex;background:#fff;border:1px solid #e5e5e5;border-radius:0;overflow:hidden;transition:border-color .2s}
+    .product-card:hover{border-color:#000}
+    .product-card img{width:220px;height:180px;object-fit:cover;border-right:1px solid #e5e5e5}
+    .info{flex:1;padding:1.2rem 1.5rem;display:flex;flex-direction:column;justify-content:space-between}
+    .info h3{font-size:1.1rem;font-weight:700;text-transform:uppercase}
+    .style-code{font-size:.8rem;color:#666;margin-bottom:.8rem}
+    .market{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem}
+    .market .label{font-size:.75rem;color:#666;text-transform:uppercase}
+    .market .price{font-size:1.2rem;font-weight:700;color:#34c759}
+    .buttons{display:flex;gap:.75rem}
+    .buttons button{flex:1;padding:.6rem 1rem;border:1px solid #000;background:#000;color:#fff;font-weight:600;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+    .buttons button:hover{background:#fff;color:#000}
+
+    /* ---------- Cart ---------- */
+    #cart{max-width:800px;margin:2rem auto;padding:2rem;border:1px solid #e5e5e5}
+    #cart h2{text-transform:uppercase;font-size:1.2rem;margin-bottom:1rem}
+    #cart-items{list-style:none;margin-bottom:1rem}
+    #cart-items li{display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px solid #e5e5e5}
+    #cart-total{font-size:1.3rem;color:#0071e3}
+    #cart button{background:#000;color:#fff;border:1px solid #000;padding:.6rem 1.2rem;text-transform:uppercase;font-weight:600;cursor:pointer}
+    #cart button:hover{background:#fff;color:#000}
+
+    /* ---------- Contact ---------- */
+    #contact{max-width:800px;margin:2rem auto;padding:2rem;border:1px solid #e5e5e5}
+    #contact h2{text-transform:uppercase;font-size:1.2rem;margin-bottom:1rem}
+    #contact input,#contact textarea{width:100%;padding:.75rem;margin-bottom:.75rem;border:1px solid #ccc;border-radius:4px;font-family:'Inter',sans-serif}
+    #contact button{background:#000;color:#fff;border:1px solid #000;padding:.75rem 1.5rem;text-transform:uppercase;font-weight:600;cursor:pointer}
+    #contact button:hover{background:#fff;color:#000}
+    #contact-msg{margin-top:1rem;color:#34c759;font-weight:600}
+
+    /* ---------- Dark Mode ---------- */
+    body.dark{background:#0d0d0d;color:#f2f2f2}
+    body.dark header,body.dark .filter-bar,body.dark .hero-strip{background:#000;border-color:#333}
+    body.dark .product-card,body.dark #cart,body.dark #contact{background:#1a1a1a;border-color:#333}
+    body.dark .info h3{color:#fff}
+    body.dark .style-code,body.dark .market .label{color:#bbb}
+    body.dark input,body.dark textarea{background:#1a1a1a;border-color:#444;color:#eee}
+    body.dark button{background:#fff;color:#000;border-color:#fff}
+    body.dark button:hover{background:#000;color:#fff}
+
+    /* ---------- Fade-In ---------- */
+    .fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+
+    /* ---------- Responsive ---------- */
+    @media(max-width:768px){
+      header{flex-direction:column;gap:.75rem}
+      .search-box{width:100%}
+      .hero-strip{flex-wrap:wrap;gap:1rem}
+      .product-card{flex-direction:column}
+      .product-card img{width:100%;border-right:none;border-bottom:1px solid #e5e5e5}
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="header-left">
-    <a href="/" class="logo">SPADRE</a>
-    <nav class="main-nav">
-      <a href="#">Sneakers</a>
-      <a href="#">Apparel</a>
-      <a href="#">Electronics</a>
-      <a href="#">Collectibles</a>
-    </nav>
-  </div>
+  <!-- ---------- Header ---------- -->
+  <header>
+    <div class="header-left">
+      <a href="/" class="logo">SPADRE</a>
+      <nav class="main-nav">
+        <a href="#">Sneakers</a><a href="#">Apparel</a><a href="#">Electronics</a><a href="#">Collectibles</a>
+      </nav>
+    </div>
+    <div class="header-center">
+      <input type="text" placeholder="Search" class="search-box">
+    </div>
+    <div class="header-right">
+      <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <a href="#" class="icon">📦</a>
+      <a href="#" class="icon">👤</a>
+      <a href="#" class="icon bag">🛒<span id="cart-count">0</span></a>
+    </div>
+  </header>
 
-  <div class="header-center">
-    <input type="text" placeholder="Search" class="search-box">
-  </div>
-
-  <div class="header-right">
-    <button id="theme-toggle">🌙</button>
-    <a href="#" class="icon">📦</a>
-    <a href="#" class="icon">👤</a>
-    <a href="#" class="icon bag">
-      🛒 <span id="cart-count">0</span>
-    </a>
-  </div>
-</header>
-  <!-- StockX Filter Bar -->
-<div class="filter-bar">
-  <div class="filter-group">
-    <label>Size</label>
-    <select>
-      <option>All Sizes</option>
-      <option>7</option><option>7.5</option><option>8</option><option>8.5</option>
-      <option>9</option><option>9.5</option><option>10</option><option>10.5</option>
-      <option>11</option><option>11.5</option><option>12</option>
-    </select>
-  </div>
-
-  <div class="filter-group">
-    <label>Price</label>
-    <select>
-      <option>All Prices</option>
-      <option>$0-100</option>
-      <option>$100-200</option>
-      <option>$200-300</option>
-      <option>$300+</option>
-    </select>
-  </div>
-
-  <div class="filter-group">
-    <label>Sort By</label>
-    <select>
-      <option>Featured</option>
-      <option>Price: Low to High</option>
-      <option>Price: High to Low</option>
-      <option>Recently Added</option>
-    </select>
-  </div>
-</div>
-  <!-- Live Market Hero Strip -->
-<section class="hero-strip">
-  <div class="hero-item">
-    <div class="label">Live Market</div>
-    <div class="value">$1.2 M</div>
-  </div>
-  <div class="hero-item">
-    <div class="label">24h Volume</div>
-    <div class="value">18.5 K</div>
-  </div>
-  <div class="hero-item">
-    <div class="label">Total Sales</div>
-    <div class="value">2.3 M</div>
-  </div>
-  <div class="hero-item">
-    <div class="label">Avg Sale Price</div>
-    <div class="value">$185</div>
-  </div>
-</section>
-
-  <main>
- <section id="products">
-  <!-- Card 1 -->
-  <div class="product-card fade-in">
-    <img src="https://thursdayboots.com/cdn/shop/files/1024x1024-Men-Premier-LowTop-White-BlindEyelets-121423-3.4_2_3615bf9d-be8c-4f08-a54e-f6a5b91208ca.jpg?v=1705532975" alt="White Sneaker">
-    <div class="info">
-      <h3>White Premier Low-Top</h3>
-      <p class="style-code">Style: SP-001</p>
-      <div class="market">
-        <span class="label">Last Sale:</span>
-        <span class="price">$185</span>
-      </div>
-      <div class="buttons">
-        <button class="bid">Bid</button>
-        <button class="ask">Ask</button>
-      </div>
+  <!-- ---------- Filter Bar ---------- -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Size</label>
+      <select id="size-filter"><option>All Sizes</option><option>7</option><option>7.5</option><option>8</option><option>8.5</option><option>9</option><option>9.5</option><option>10</option><option>10.5</option><option>11</option><option>11.5</option><option>12</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Price</label>
+      <select id="price-filter"><option>All Prices</option><option>$0-100</option><option>$100-200</option><option>$200-300</option><option>$300+</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Sort By</label>
+      <select id="sort-filter"><option>Featured</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Recently Added</option></select>
     </div>
   </div>
 
-  <!-- Card 2 -->
-  <div class="product-card fade-in">
-    <img src="http://www.dnkmobile.com/cdn/shop/products/bonafini-shoe-men-s-white-casual-sneaker-37203043713254.jpg?v=1661702232" alt="Casual Sneaker">
-    <div class="info">
-      <h3>Bonafini Casual</h3>
-      <p class="style-code">Style: SP-002</p>
-      <div class="market">
-        <span class="label">Last Sale:</span>
-        <span class="price">$160</span>
-      </div>
-      <div class="buttons">
-        <button class="bid">Bid</button>
-        <button class="ask">Ask</button>
-      </div>
-    </div>
-  </div>
+  <!-- ---------- Hero Strip ---------- -->
+  <section class="hero-strip">
+    <div class="hero-item"><div class="label">Live Market</div><div class="value" id="live-market">$1.2 M</div></div>
+    <div class="hero-item"><div class="label">24h Volume</div><div class="value" id="day-volume">18.5 K</div></div>
+    <div class="hero-item"><div class="label">Total Sales</div><div class="value" id="total-sales">2.3 M</div></div>
+    <div class="hero-item"><div class="label">Avg Sale Price</div><div class="value" id="avg-price">$185</div></div>
+  </section>
 
-  <!-- Card 3 -->
-  <div class="product-card fade-in">
-    <img src="https://ombre.com/hpeciai/d7efd3877dbdbac3b7c21448bda04c10/eng_il_Mens-uniform-casual-shoes-in-eco-nubuck-light-grey-V2-OM-FOCS-0151-127159.webp" alt="Grey Nubuck">
-    <div class="info">
-      <h3>Eco Nubuck Grey</h3>
-      <p class="style-code">Style: SP-003</p>
-      <div class="market">
-        <span class="label">Last Sale:</span>
-        <span class="price">$195</span>
-      </div>
-      <div class="buttons">
-        <button class="bid">Bid</button>
-        <button class="ask">Ask</button>
+  <!-- ---------- Product Grid ---------- -->
+  <section id="products">
+    <div class="product-card fade-in">
+      <img src="https://thursdayboots.com/cdn/shop/files/1024x1024-Men-Premier-LowTop-White-BlindEyelets-121423-3.4_2_3615bf9d-be8c-4f08-a54e-f6a5b91208ca.jpg?v=1705532975" alt="White Premier Low-Top">
+      <div class="info">
+        <h3>White Premier Low-Top</h3>
+        <p class="style-code">Style: SP-001</p>
+        <div class="market"><span class="label">Last Sale:</span><span class="price">$185</span></div>
+        <div class="buttons"><button class="bid" onclick="addToCart('White Premier Low-Top',185)">Bid</button><button class="ask">Ask</button></div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="product-card fade-in">
+      <img src="http://www.dnkmobile.com/cdn/shop/products/bonafini-shoe-men-s-white-casual-sneaker-37203043713254.jpg?v=1661702232" alt="Bonafini Casual">
+      <div class="info">
+        <h3>Bonafini Casual</h3>
+        <p class="style-code">Style: SP-002</p>
+        <div class="market"><span class="label">Last Sale:</span><span class="price">$160</span></div>
+        <div class="buttons"><button class="bid" onclick="addToCart('Bonafini Casual',160)">Bid</button><button class="ask">Ask</button></div>
+      </div>
+    </div>
+    <div class="product-card fade-in">
+      <img src="https://ombre.com/hpeciai/d7efd3877dbdbac3b7c21448bda04c10/eng_il_Mens-uniform-casual-shoes-in-eco-nubuck-light-grey-V2-OM-FOCS-0151-127159.webp" alt="Grey Nubuck">
+      <div class="info">
+        <h3>Eco Nubuck Grey</h3>
+        <p class="style-code">Style: SP-003</p>
+        <div class="market"><span class="label">Last Sale:</span><span class="price">$195</span></div>
+        <div class="buttons"><button class="bid" onclick="addToCart('Eco Nubuck Grey',195)">Bid</button><button class="ask">Ask</button></div>
+      </div>
+    </div>
+  </section>
 
-    <section id="cart">
-      <h2>Your Cart</h2>
-      <ul id="cart-items"></ul>
-      <p><strong>Total: $<span id="cart-total">0.00</span></strong></p>
-      <button onclick="clearCart()">Clear Cart</button>
-    </section>
+  <!-- ---------- Cart ---------- -->
+  <section id="cart" class="fade-in">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>Total: $<span id="cart-total">0.00</span></strong></p>
+    <button onclick="clearCart()">Clear Cart</button>
+  </section>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <form onsubmit="handleContact(event)">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-      <p id="contact-msg"></p>
-    </section>
-  </main>
+  <!-- ---------- Contact ---------- -->
+  <section id="contact" class="fade-in">
+    <h2>Contact Us</h2>
+    <form onsubmit="handleContact(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="contact-msg"></p>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- ---------- JS ---------- -->
+  <script>
+    /* Cart logic */
+    let cart = [];
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      const cartCount = document.getElementById('cart-count');
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+      cartTotal.textContent = total.toFixed(2);
+      cartCount.textContent = cart.length;
+    }
+    function clearCart() {
+      cart = [];
+      updateCart();
+    }
+    function handleContact(e) {
+      e.preventDefault();
+      document.getElementById('contact-msg').textContent = 'Thanks! We’ll get back to you soon.';
+      e.target.reset();
+    }
+
+    /* Dark mode */
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    if (localStorage.theme === 'dark') {
+      body.classList.add('dark');
+      toggle.textContent = '☀️';
+    }
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      localStorage.theme = body.classList.contains('dark') ? 'dark' : 'light';
+      toggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+
+    /* Fade-in on scroll */
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1 });
+    faders.forEach(el => appearOnScroll.observe(el));
+
+    /* Live stats update every 3s */
+    setInterval(() => {
+      const market = (Math.random() * 0.5 + 1.1).toFixed(1);
+      const volume = (Math.random() * 10 + 15).toFixed(1);
+      const sales = (Math.random() * 0.3 + 2.2).toFixed(1);
+      const avg = Math.floor(Math.random() * 50 + 170);
+      document.getElementById('live-market').textContent = `$${market} M`;
+      document.getElementById('day-volume').textContent = `${volume} K`;
+      document.getElementById('total-sales').textContent = `${sales} M`;
+      document.getElementById('avg-price').textContent = `$${avg}`;
+    }, 3000);
+  </script>
 </body>
 </html>
