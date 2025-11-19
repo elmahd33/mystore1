@@ -7,14 +7,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>My Store</h1>
-    <div id="cart-icon">🛒 <span id="cart-count">0</span></div>
-   <div>
-    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-    <span id="cart-icon">🛒 <span id="cart-count">0</span></span>
+<header>
+  <div class="header-left">
+    <a href="/" class="logo">SPADRE</a>
+    <nav class="main-nav">
+      <a href="#">Sneakers</a>
+      <a href="#">Apparel</a>
+      <a href="#">Electronics</a>
+      <a href="#">Collectibles</a>
+    </nav>
   </div>
-  </header>
+
+  <div class="header-center">
+    <input type="text" placeholder="Search" class="search-box">
+  </div>
+
+  <div class="header-right">
+    <button id="theme-toggle">🌙</button>
+    <a href="#" class="icon">📦</a>
+    <a href="#" class="icon">👤</a>
+    <a href="#" class="icon bag">
+      🛒 <span id="cart-count">0</span>
+    </a>
+  </div>
+</header>
 
   <main>
     <section id="products">
