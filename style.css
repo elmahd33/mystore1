@@ -347,3 +347,28 @@ body.dark .product-card img { border-color: #333; }
 body.dark .info h3 { color: #fff; }
 body.dark .style-code,
 body.dark .market .label { color: #bbb; }
+/* ---------- StockX Hero Strip ---------- */
+.hero-strip {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #000;
+  color: #fff;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #333;
+  text-align: center;
+}
+.hero-item .label {
+  font-size: .7rem;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.hero-item .value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: .25rem;
+}
+
+/* Dark mode */
+body.dark .hero-strip { background: #0d0d0d; border-color: #333; }
